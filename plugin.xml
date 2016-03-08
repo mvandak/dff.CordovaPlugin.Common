@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" 
+    id="com.dff.cordova.plugins.common"
+    version="0.0.1">
+
+    <name>PackageInfo</name>
+    <description>Common Plugin</description>
+    <author>dff solutions</author>
+    <keywords>phonegap,cordova,common,dff</keywords>
+ 
+    <!-- android -->
+    <platform name="android">
+		<source-file src="src/android/com/dff/cordova/plugin/common/AbstractPluginListener.java" target-dir="src/com/dff/cordova/plugin/common" />
+		<source-file src="src/android/com/dff/cordova/plugin/common/action/CordovaAction.java" target-dir="src/com/dff/cordova/plugin/common/action" />
+		<source-file src="src/android/com/dff/cordova/plugin/common/CommonPlugin.java" target-dir="src/com/dff/cordova/plugin/common" />
+		<source-file src="src/android/com/dff/cordova/plugin/common/log/AbstractLogListener.java" target-dir="src/com/dff/cordova/plugin/common/log" />
+		<source-file src="src/android/com/dff/cordova/plugin/common/log/CordovaPluginLog.java" target-dir="src/com/dff/cordova/plugin/common/log" />
+		<source-file src="src/android/com/dff/cordova/plugin/common/log/LogListenerInterface.java" target-dir="src/com/dff/cordova/plugin/common/log" />
+		<source-file src="src/android/com/dff/cordova/plugin/common/log/LogListener.java" target-dir="src/com/dff/cordova/plugin/common/log" />
+     </platform>
+</plugin>
