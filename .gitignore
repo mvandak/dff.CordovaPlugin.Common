@@ -1,0 +1,7 @@
+
+/bin
+/node_modules
+/gulpfile.js
+/lib/android.jar
+/lib/classes.jar
+/.classpath

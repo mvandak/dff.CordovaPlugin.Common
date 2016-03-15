@@ -32,3 +32,4 @@ Feature is available in JavaScript via global `PackageManager`.
 Multiple flags can be added.
 
     PackageManager.getPackageInfo(success, error, { flags: PackageManager.GET_PERMISSIONS})
+# dff.CordovaPlugin.Common
