@@ -3,7 +3,7 @@
     id="com.dff.cordova.plugins.common"
     version="0.0.1">
 
-    <name>PackageInfo</name>
+    <name>Common</name>
     <description>Common Plugin</description>
     <author>dff solutions</author>
     <keywords>phonegap,cordova,common,dff</keywords>
