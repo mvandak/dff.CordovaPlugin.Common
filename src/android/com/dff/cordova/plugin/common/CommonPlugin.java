@@ -11,7 +11,7 @@ import com.dff.cordova.plugin.common.log.LogListener;
 import android.content.Intent;
 
 public class CommonPlugin extends CordovaPlugin {
-
+	private static final String LOG_TAG = "com.dff.cordova.plugin.common.CommonPlugin";
 	// log service
 	protected LogListener logListener;
 	
@@ -45,7 +45,16 @@ public class CommonPlugin extends CordovaPlugin {
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-    	CordovaPluginLog.i(this.getClass().getName(), "onActivityResult - requestCode: " + requestCode + "; resultCode: " + resultCode + "; intent: " + intent.toString());
+    	CordovaPluginLog.i(LOG_TAG, "onActivityResult - requestCode: " + requestCode + "; resultCode: " + resultCode + "; intent: " + intent.toString());
+    }
+    
+    /**
+     * Called when the activity receives a new intent.
+     */
+    @Override
+    public void onNewIntent(Intent intent) {
+    	super.onNewIntent(intent);
+    	CordovaPluginLog.i(LOG_TAG, "new intent: " + intent.getAction() + " " + intent.getType() + " " + intent.getScheme());
     }
     
     /**
@@ -69,7 +78,7 @@ public class CommonPlugin extends CordovaPlugin {
      		, final CallbackContext callbackContext)
          throws JSONException {
  		
-     	CordovaPluginLog.i(this.getClass().getName(), "call for action: " + action + "; args: " + args);
+     	CordovaPluginLog.i(LOG_TAG, "call for action: " + action + "; args: " + args);
      	
      	// check super
      	boolean superResult = super.execute(action, args, callbackContext);
