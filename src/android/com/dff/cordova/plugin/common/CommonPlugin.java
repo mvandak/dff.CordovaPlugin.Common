@@ -80,14 +80,11 @@ public class CommonPlugin extends CordovaPlugin {
  		
      	CordovaPluginLog.i(LOG_TAG, "call for action: " + action + "; args: " + args);
      	
-     	// check super
-     	boolean superResult = super.execute(action, args, callbackContext);
-     	
      	if (action.equals("onLog")) {
      		this.logListener.setCallBack(callbackContext);
      		return true;
      	}
      	
-     	return superResult;
+     	return super.execute(action, args, callbackContext);
      }
 }
