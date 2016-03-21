@@ -7,6 +7,10 @@
     <description>Common Plugin</description>
     <author>dff solutions</author>
     <keywords>phonegap,cordova,common,dff</keywords>
+    
+     <js-module src="www/common.js" name="common">
+        <clobbers target="CommonPlugin" />
+    </js-module>
  
     <!-- android -->
     <platform name="android">
