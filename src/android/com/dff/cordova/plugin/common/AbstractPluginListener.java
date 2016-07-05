@@ -80,4 +80,12 @@ public abstract class AbstractPluginListener {
             this.callback.sendPluginResult(result);
 		}
 	}
+	
+	protected void sendPluginResult(Exception e) {
+		if (this.callback != null) {
+			PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getMessage());
+            result.setKeepCallback(true);
+            this.callback.sendPluginResult(result);
+		}
+	}
 }
