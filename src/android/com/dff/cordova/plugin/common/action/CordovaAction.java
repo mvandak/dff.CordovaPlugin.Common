@@ -7,7 +7,8 @@ import org.json.JSONArray;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 
 public abstract class CordovaAction implements Runnable {
-
+	private static final String LOG_TAG = "com.dff.cordova.plugin.common.action.CordovaAction";
+	
 	protected String action;
 	protected JSONArray args;
 	protected CallbackContext callbackContext;
@@ -22,7 +23,7 @@ public abstract class CordovaAction implements Runnable {
 	
 	@Override
 	public void run() {
-		CordovaPluginLog.i(this.getClass().getName(), "running action: " + this.action + "; args: " + this.args);
+		CordovaPluginLog.i(LOG_TAG, "running action: " + this.action + "; args: " + this.args);
 	}
 
 }
