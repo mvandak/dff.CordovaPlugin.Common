@@ -23,8 +23,7 @@ public abstract class AbstractPluginListener {
 		if (this.callback != null) {
 			PluginResult result = new PluginResult(PluginResult.Status.OK);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);
-            
+            this.callback.sendPluginResult(result);            
 		}
 	}
 	
@@ -32,8 +31,7 @@ public abstract class AbstractPluginListener {
 		if (this.callback != null) {
 			PluginResult result = new PluginResult(PluginResult.Status.OK, message);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);
-            
+            this.callback.sendPluginResult(result);            
 		}
 	}
 	
@@ -41,8 +39,7 @@ public abstract class AbstractPluginListener {
 		if (this.callback != null) {
 			PluginResult result = new PluginResult(PluginResult.Status.OK, message);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);
-            
+            this.callback.sendPluginResult(result);            
 		}
 	}
 
@@ -50,8 +47,7 @@ public abstract class AbstractPluginListener {
 		if (this.callback != null) {
 			PluginResult result = new PluginResult(PluginResult.Status.OK, message);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);
-            
+            this.callback.sendPluginResult(result);            
 		}
 	}
 	
@@ -59,8 +55,7 @@ public abstract class AbstractPluginListener {
 		if (this.callback != null) {
 			PluginResult result = new PluginResult(PluginResult.Status.OK, b);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);
-            
+            this.callback.sendPluginResult(result);            
 		}
 	}
 	
@@ -68,8 +63,7 @@ public abstract class AbstractPluginListener {
 		if (this.callback != null) {
 			PluginResult result = new PluginResult(PluginResult.Status.OK, i);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);
-            
+            this.callback.sendPluginResult(result);            
 		}
 	}
 	

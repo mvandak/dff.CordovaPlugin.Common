@@ -2,6 +2,7 @@ package com.dff.cordova.plugin.common;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.LOG;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -15,7 +16,7 @@ public class CommonPlugin extends CordovaPlugin {
 	private static final String LOG_TAG = "com.dff.cordova.plugin.common.CommonPlugin";
 	private String childLogTag = "";
 	// log service
-	protected LogListener logListener;
+	protected static LogListener logListener;
 	
 	public CommonPlugin() {
 		super();
@@ -34,8 +35,10 @@ public class CommonPlugin extends CordovaPlugin {
 		CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "pluginInitialize");
 		super.pluginInitialize();
 		
-    	this.logListener = new LogListener();
-    	CordovaPluginLog.addLogListner(this.logListener);
+		if (logListener == null) {
+			logListener = new LogListener();
+			CordovaPluginLog.addLogListner(logListener);
+		}
 	}
 	
     /**
@@ -88,10 +91,8 @@ public class CommonPlugin extends CordovaPlugin {
      */
 	@Override
 	public void onDestroy() {
-		CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onDestroy");
+		CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onDestroy");		
 		super.onDestroy();
-		CordovaPluginLog.removeLogListener(this.logListener);
-		this.logListener.onDestroy();
 	}
   
     /**
@@ -194,7 +195,13 @@ public class CommonPlugin extends CordovaPlugin {
      	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "call for action: " + action + "; args: " + args);
      	
      	if (action.equals("onLog")) {
-     		this.logListener.setCallBack(callbackContext);
+     		if (logListener != null) {
+     			logListener.setCallBack(callbackContext);     			
+     		}
+     		else {
+     			LOG.e(LOG_TAG, "log listener not initialized");
+     		}
+     		
      		return true;
      	}
      	
