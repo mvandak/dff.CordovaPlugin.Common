@@ -23,7 +23,7 @@ public class CommonPlugin extends CordovaPlugin {
 	}
 	
 	public CommonPlugin(String childLogTag) {
-		super();
+		this();
 		this.childLogTag = childLogTag;
 	}
 	
