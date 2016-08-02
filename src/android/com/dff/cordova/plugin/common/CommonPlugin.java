@@ -32,7 +32,7 @@ public class CommonPlugin extends CordovaPlugin {
 	*/
 	@Override
 	public void pluginInitialize() {
-		CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "pluginInitialize");
+		CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")", "pluginInitialize");
 		super.pluginInitialize();
 		
 		if (logListener == null) {
@@ -47,7 +47,7 @@ public class CommonPlugin extends CordovaPlugin {
      * @param multitasking		Flag indicating if multitasking is turned on for app
      */
     public void onPause(boolean multitasking) {
-    	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onPause - multitasking: " + multitasking);
+    	CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")", "onPause - multitasking: " + multitasking);
     	super.onPause(multitasking);
     }
 
@@ -57,7 +57,7 @@ public class CommonPlugin extends CordovaPlugin {
      * @param multitasking		Flag indicating if multitasking is turned on for app
      */
     public void onResume(boolean multitasking) {
-    	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onResume - multitasking: " + multitasking);
+    	CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")", "onResume - multitasking: " + multitasking);
     	super.onResume(multitasking);
     }
 
@@ -65,7 +65,7 @@ public class CommonPlugin extends CordovaPlugin {
      * Called when the activity is becoming visible to the user.
      */
     public void onStart() {
-    	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onStart");
+    	CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")", "onStart");
     	super.onStart();
     }
 
@@ -73,7 +73,7 @@ public class CommonPlugin extends CordovaPlugin {
      * Called when the activity is no longer visible to the user.
      */
     public void onStop() {
-    	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onStop");
+    	CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")", "onStop");
     	super.onStop();
     }
     
@@ -82,7 +82,7 @@ public class CommonPlugin extends CordovaPlugin {
      */
     @Override
     public void onNewIntent(Intent intent) {
-    	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onNewIntent: " + intent.getAction() + " " + intent.getType() + " " + intent.getScheme());
+    	CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")", "onNewIntent: " + intent.getAction() + " " + intent.getType() + " " + intent.getScheme());
     	super.onNewIntent(intent);
     }
     
@@ -91,7 +91,7 @@ public class CommonPlugin extends CordovaPlugin {
      */
 	@Override
 	public void onDestroy() {
-		CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onDestroy");		
+		CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")", "onDestroy");		
 		super.onDestroy();
 	}
   
@@ -105,7 +105,7 @@ public class CommonPlugin extends CordovaPlugin {
      * @return  Bundle containing the state of the plugin or null if state does not need to be saved
      */
     public Bundle onSaveInstanceState() {
-    	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onSaveInstanceState");
+    	CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")", "onSaveInstanceState");
         return super.onSaveInstanceState();
     }
 
@@ -118,7 +118,7 @@ public class CommonPlugin extends CordovaPlugin {
      * @param callbackContext   Replacement Context to return the plugin result to
      */
     public void onRestoreStateForActivityResult(Bundle state, CallbackContext callbackContext) {
-    	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")"
+    	CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")"
     			, "onRestoreStateForActivityResult -"
     					+ " bundle: " + state.toString()
     					+ "; callbackContext: " + callbackContext.toString());
@@ -135,7 +135,7 @@ public class CommonPlugin extends CordovaPlugin {
      * @return              Object to stop propagation or null
      */
     public Object onMessage(String id, Object data) {
-    	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")"
+    	CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")"
     			, "onMessage - "
     					+ " id: " + id
     					+ "; data: " + data.toString());
@@ -155,7 +155,7 @@ public class CommonPlugin extends CordovaPlugin {
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-    	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onActivityResult - requestCode: " + requestCode + "; resultCode: " + resultCode + "; intent: " + intent.toString());
+    	CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")", "onActivityResult - requestCode: " + requestCode + "; resultCode: " + resultCode + "; intent: " + intent.toString());
     	super.onActivityResult(requestCode, resultCode, intent);
     }
     
@@ -167,7 +167,7 @@ public class CommonPlugin extends CordovaPlugin {
      * Does nothing by default.
      */
     public void onReset() {
-    	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "onReset");
+    	CordovaPluginLog.v(LOG_TAG + "(" + this.childLogTag + ")", "onReset");
     	super.onReset();
     }
     
