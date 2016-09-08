@@ -192,7 +192,7 @@ public class CommonPlugin extends CordovaPlugin {
      		, final CallbackContext callbackContext)
          throws JSONException {
  		
-     	CordovaPluginLog.i(LOG_TAG + "(" + this.childLogTag + ")", "call for action: " + action + "; args: " + args);
+     	CordovaPluginLog.d(LOG_TAG + "(" + this.childLogTag + ")", "call for action: " + action + "; args: " + args);
      	
      	if (action.equals("onLog")) {
      		if (logListener != null) {
