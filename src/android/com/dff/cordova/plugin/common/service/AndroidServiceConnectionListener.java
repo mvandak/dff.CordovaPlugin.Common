@@ -19,7 +19,7 @@ import android.os.IBinder;
  */
 public class AndroidServiceConnectionListener
 	extends AbstractPluginListener
-	implements ServiceConnection{
+	implements ServiceConnection {
 	private static final String TAG = "com.dff.cordova.plugin.common.service.AndroidServiceConnectionListener";
 	private List<ServiceConnection> serviceConnections = new ArrayList<ServiceConnection>();
 
