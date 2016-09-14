@@ -2,19 +2,20 @@ package com.dff.cordova.plugin.common.service;
 
 import org.apache.cordova.CordovaInterface;
 
+import com.dff.cordova.plugin.common.AbstractPluginListener;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
-import com.dff.cordova.plugin.common.service.ServiceConnectionListener;
 
 
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.Messenger;
 
-public class ServiceHandler extends ServiceConnectionListener {
-	private static final String TAG = "com.dff.cordova.plugin.shuttle.worker.ShuttleWorkerServiceHandler";
+public class ServiceHandler	extends AbstractPluginListener implements ServiceConnection {
+	private static final String TAG = "com.dff.cordova.plugin.common.service.ServiceHandler";
 	private CordovaInterface cordova;
 	private Class<? extends Service> serviceClass;
 	boolean isBound = false;
@@ -40,16 +41,18 @@ public class ServiceHandler extends ServiceConnectionListener {
 
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder service) {
-		super.onServiceConnected(name, service);
+		CordovaPluginLog.d(TAG, "onServiceConnected: " + name.toString());
 		this.setService(new Messenger(service));
 		this.isBound = true;
+		super.sendPluginResult(isBound);
 	}
 
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
-		super.onServiceDisconnected(name);
+		CordovaPluginLog.d(TAG, "onServiceDisconnected: " + name.toString());
 		setService(null);
 		this.isBound = false;
+		super.sendPluginResult(isBound);
 	}
 
 	public Messenger getService() {

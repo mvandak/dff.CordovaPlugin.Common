@@ -19,7 +19,6 @@ public abstract class CommonServicePlugin extends CommonPlugin {
 	private static final String TAG = "com.dff.cordova.plugin.common.service.CommonServicePlugin";
 	private HashMap<String, Class<? extends ServiceAction>> actions = new HashMap<String, Class<? extends ServiceAction>>();
 	protected ServiceHandler serviceHandler;
-	private ServiceConnectionListener serviceConnectionListener;
 	
 	public CommonServicePlugin(String TAG) {
 		super(TAG);
@@ -31,15 +30,12 @@ public abstract class CommonServicePlugin extends CommonPlugin {
 	public void pluginInitialize(ServiceHandler serviceHandler) {
 		super.pluginInitialize();
 		this.serviceHandler = serviceHandler;
-		this.serviceConnectionListener = new ServiceConnectionListener();
-		this.serviceHandler.addServiceConnection(this.serviceConnectionListener);
 	}
 	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		this.serviceHandler.unbindService();
-		this.serviceConnectionListener.onDestroy();
 	}
 	
    /**
@@ -67,7 +63,7 @@ public abstract class CommonServicePlugin extends CommonPlugin {
     	CordovaAction cordovaAction = null;
     	
     	if (action.equals("onServiceConnectionChange")) {
-    		this.serviceConnectionListener.setCallBack(callbackContext);
+    		this.serviceHandler.setCallBack(callbackContext);
     		return true;
     	}
      	else if (actions.containsKey(action)) {     		
