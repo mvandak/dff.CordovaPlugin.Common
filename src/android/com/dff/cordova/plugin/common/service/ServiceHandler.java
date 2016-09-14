@@ -22,10 +22,11 @@ public class ServiceHandler extends ServiceConnectionListener {
 	
 	public ServiceHandler(CordovaInterface cordova, Class<? extends Service> serviceClass) {
 		this.cordova = cordova;
+		this.serviceClass = serviceClass;
 	}
 	
 	public boolean bindService() {	
-		Intent bindIntent = new Intent(this.cordova.getActivity(), serviceClass);
+		Intent bindIntent = new Intent(this.cordova.getActivity(), this.serviceClass);
 		CordovaPluginLog.d(TAG, "bind service " + bindIntent.toString());
 		return this.cordova.getActivity().bindService(bindIntent, this, Context.BIND_AUTO_CREATE);
 	}
