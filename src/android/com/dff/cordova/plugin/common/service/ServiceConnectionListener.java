@@ -17,7 +17,7 @@ import android.os.IBinder;
  * @author frank
  *
  */
-public class AndroidServiceConnectionListener
+public class ServiceConnectionListener
 	extends AbstractPluginListener
 	implements ServiceConnection {
 	private static final String TAG = "com.dff.cordova.plugin.common.service.AndroidServiceConnectionListener";

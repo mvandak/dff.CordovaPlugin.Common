@@ -3,7 +3,8 @@ package com.dff.cordova.plugin.common.service;
 import org.apache.cordova.CordovaInterface;
 
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
-import com.dff.cordova.plugin.common.service.AndroidServiceConnectionListener;
+import com.dff.cordova.plugin.common.service.ServiceConnectionListener;
+
 
 import android.app.Service;
 import android.content.ComponentName;
@@ -12,7 +13,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.Messenger;
 
-public class ServiceHandler extends AndroidServiceConnectionListener {
+public class ServiceHandler extends ServiceConnectionListener {
 	private static final String TAG = "com.dff.cordova.plugin.shuttle.worker.ShuttleWorkerServiceHandler";
 	private CordovaInterface cordova;
 	private Class<? extends Service> serviceClass;
