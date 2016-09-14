@@ -26,6 +26,10 @@
 		<source-file src="src/android/com/dff/cordova/plugin/common/log/LogListenerInterface.java" target-dir="src/com/dff/cordova/plugin/common/log" />
 		<source-file src="src/android/com/dff/cordova/plugin/common/log/LogListener.java" target-dir="src/com/dff/cordova/plugin/common/log" />
 		<source-file src="src/android/com/dff/cordova/plugin/common/log/CordovaPluginLog.java" target-dir="src/com/dff/cordova/plugin/common/log" />
+		<source-file src="src/android/com/dff/cordova/plugin/common/service/action/ServiceAction.java" target-dir="src/com/dff/cordova/plugin/common/service/action" />
+		<source-file src="src/android/com/dff/cordova/plugin/common/service/action/UnbindService.java" target-dir="src/com/dff/cordova/plugin/common/service/action" />
+		<source-file src="src/android/com/dff/cordova/plugin/common/service/action/BindService.java" target-dir="src/com/dff/cordova/plugin/common/service/action" />
+		<source-file src="src/android/com/dff/cordova/plugin/common/service/CommonServicePlugin.java" target-dir="src/com/dff/cordova/plugin/common/service" />
 		<source-file src="src/android/com/dff/cordova/plugin/common/service/ServiceConnectionListener.java" target-dir="src/com/dff/cordova/plugin/common/service" />
 		<source-file src="src/android/com/dff/cordova/plugin/common/service/ServiceHandler.java" target-dir="src/com/dff/cordova/plugin/common/service" />
 		<source-file src="src/android/com/dff/cordova/plugin/common/AbstractPluginListener.java" target-dir="src/com/dff/cordova/plugin/common" />
