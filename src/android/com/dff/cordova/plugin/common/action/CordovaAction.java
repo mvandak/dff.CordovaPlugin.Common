@@ -2,11 +2,10 @@ package com.dff.cordova.plugin.common.action;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.LOG;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 
 public abstract class CordovaAction implements Runnable {
 	private static final String LOG_TAG = "com.dff.cordova.plugin.common.action.CordovaAction";
@@ -57,7 +56,7 @@ public abstract class CordovaAction implements Runnable {
 	 */
 	@Override
 	public void run() {
-		CordovaPluginLog.d(LOG_TAG, "running action: " + this.action + "; args: " + this.args);
+		LOG.d(LOG_TAG, "running action: " + this.action + "; args: " + this.args);
 	}
 
 }
