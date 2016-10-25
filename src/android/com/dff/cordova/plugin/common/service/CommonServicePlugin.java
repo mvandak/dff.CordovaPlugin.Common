@@ -15,91 +15,99 @@ import com.dff.cordova.plugin.common.service.action.BindService;
 import com.dff.cordova.plugin.common.service.action.ServiceAction;
 import com.dff.cordova.plugin.common.service.action.UnbindService;
 
+import android.util.Log;
+
 public abstract class CommonServicePlugin extends CommonPlugin {
 	private static final String TAG = "com.dff.cordova.plugin.common.service.CommonServicePlugin";
-	private HashMap<String, Class<? extends ServiceAction>> actions = new HashMap<String, Class<? extends ServiceAction>>();
+	private HashMap<String, Class<? extends ServiceAction>> actions =
+	        new HashMap<String, Class<? extends ServiceAction>>();
 	protected ServiceHandler serviceHandler;
-	
+
 	public CommonServicePlugin(String TAG) {
 		super(TAG);
-		
-		actions.put(BindService.ACTION_NAME, BindService.class);
-		actions.put(UnbindService.ACTION_NAME, UnbindService.class);
+
+		this.actions.put(BindService.ACTION_NAME, BindService.class);
+		this.actions.put(UnbindService.ACTION_NAME, UnbindService.class);
 	}
 
 	public void pluginInitialize(ServiceHandler serviceHandler) {
 		super.pluginInitialize();
 		this.serviceHandler = serviceHandler;
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		this.serviceHandler.unbindService();
 	}
-	
-   /**
-    * Executes the request.
-    *
-    * This method is called from the WebView thread.
-    * To do a non-trivial amount of work, use:
-    * cordova.getThreadPool().execute(runnable);
-    *
-    * To run on the UI thread, use:
-    * cordova.getActivity().runOnUiThread(runnable);
-    *
-    * @param action The action to execute.
-    * @param args The exec() arguments.
-    * @param callbackContext The callback context used when calling back into JavaScript.
-    * @return Whether the action was valid.
-    */
+
+	/**
+	 * Executes the request.
+	 *
+	 * This method is called from the WebView thread. To do a non-trivial amount
+	 * of work, use: cordova.getThreadPool().execute(runnable);
+	 *
+	 * To run on the UI thread, use:
+	 * cordova.getActivity().runOnUiThread(runnable);
+	 *
+	 * @param action
+	 *            The action to execute.
+	 * @param args
+	 *            The exec() arguments.
+	 * @param callbackContext
+	 *            The callback context used when calling back into JavaScript.
+	 * @return Whether the action was valid.
+	 */
 	@Override
-    public boolean execute(String action
-    		, final JSONArray args
-    		, final CallbackContext callbackContext)
-        throws JSONException {
-		CordovaPluginLog.d(TAG, "call for action: " + action + "; args: " + args);
-		
-    	CordovaAction cordovaAction = null;
-    	
-    	if (action.equals("onServiceConnectionChange")) {
-    		this.serviceHandler.setCallBack(callbackContext);
-    		return true;
-    	}
-     	else if (actions.containsKey(action)) {     		
-     		Class<? extends ServiceAction> actionClass = actions.get(action);
-     		
-     		CordovaPluginLog.d(TAG, "found action: " + actionClass.getName());
-     		
-     		try {
+	public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext)
+	        throws JSONException {
+		Log.d(TAG, "call for action: " + action + "; args: " + args);
+
+		CordovaAction cordovaAction = null;
+
+		if (action.equals("onServiceConnectionChange")) {
+			this.serviceHandler.setCallBack(callbackContext);
+			return true;
+		}
+		else if (this.actions.containsKey(action)) {
+			Class<? extends ServiceAction> actionClass = this.actions.get(action);
+
+			Log.d(TAG, "found action: " + actionClass.getName());
+
+			try {
 				cordovaAction = actionClass.getConstructor(
-						String.class
-						, JSONArray.class
-						, CallbackContext.class
-						, CordovaInterface.class
-						, ServiceHandler.class
-					)
-					.newInstance(action, args, callbackContext, this.cordova, this.serviceHandler);
-			} catch (InstantiationException e) {
-				CordovaPluginLog.e(TAG, e.getMessage(), e);
-			} catch (IllegalAccessException e) {
-				CordovaPluginLog.e(TAG, e.getMessage(), e);
-			} catch (IllegalArgumentException e) {
-				CordovaPluginLog.e(TAG, e.getMessage(), e);
-			} catch (InvocationTargetException e) {
-				CordovaPluginLog.e(TAG, e.getMessage(), e);
-			} catch (NoSuchMethodException e) {
-				CordovaPluginLog.e(TAG, e.getMessage(), e);
-			} catch (SecurityException e) {
+				        String.class,
+				        JSONArray.class,
+				        CallbackContext.class,
+				        CordovaInterface.class,
+				        ServiceHandler.class)
+				        .newInstance(action, args, callbackContext, this.cordova, this.serviceHandler);
+			}
+			catch (InstantiationException e) {
 				CordovaPluginLog.e(TAG, e.getMessage(), e);
 			}
-     	}
-    	
-    	if (cordovaAction != null) {
-    		cordova.getThreadPool().execute(cordovaAction);
-            return true;
-    	}    	
+			catch (IllegalAccessException e) {
+				CordovaPluginLog.e(TAG, e.getMessage(), e);
+			}
+			catch (IllegalArgumentException e) {
+				CordovaPluginLog.e(TAG, e.getMessage(), e);
+			}
+			catch (InvocationTargetException e) {
+				CordovaPluginLog.e(TAG, e.getMessage(), e);
+			}
+			catch (NoSuchMethodException e) {
+				CordovaPluginLog.e(TAG, e.getMessage(), e);
+			}
+			catch (SecurityException e) {
+				CordovaPluginLog.e(TAG, e.getMessage(), e);
+			}
+		}
 
-        return super.execute(action, args, callbackContext);
-    }	
+		if (cordovaAction != null) {
+			this.cordova.getThreadPool().execute(cordovaAction);
+			return true;
+		}
+
+		return super.execute(action, args, callbackContext);
+	}
 }

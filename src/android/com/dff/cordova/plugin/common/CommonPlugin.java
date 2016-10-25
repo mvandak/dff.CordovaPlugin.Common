@@ -2,7 +2,6 @@ package com.dff.cordova.plugin.common;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.LOG;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -14,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Process;
+import android.util.Log;
 
 public class CommonPlugin extends CordovaPlugin {
 	private static final String LOG_TAG = "com.dff.cordova.plugin.common.CommonPlugin";
@@ -38,7 +38,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public void pluginInitialize() {
-		LOG.v(LOG_TAG + "(" + this.childLogTag + ")", "pluginInitialize");
+		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "pluginInitialize");
 		super.pluginInitialize();
 
 		this.actionHandlerThread = new HandlerThread("PluginActions", Process.THREAD_PRIORITY_BACKGROUND);
@@ -59,7 +59,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public void onPause(boolean multitasking) {
-		LOG.v(LOG_TAG + "(" + this.childLogTag + ")", "onPause - multitasking: " + multitasking);
+		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "onPause - multitasking: " + multitasking);
 		super.onPause(multitasking);
 	}
 
@@ -71,7 +71,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public void onResume(boolean multitasking) {
-		LOG.v(LOG_TAG + "(" + this.childLogTag + ")", "onResume - multitasking: " + multitasking);
+		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "onResume - multitasking: " + multitasking);
 		super.onResume(multitasking);
 	}
 
@@ -80,7 +80,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public void onStart() {
-		LOG.v(LOG_TAG + "(" + this.childLogTag + ")", "onStart");
+		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "onStart");
 		super.onStart();
 	}
 
@@ -89,7 +89,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public void onStop() {
-		LOG.v(LOG_TAG + "(" + this.childLogTag + ")", "onStop");
+		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "onStop");
 		super.onStop();
 	}
 
@@ -98,7 +98,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public void onNewIntent(Intent intent) {
-		LOG.v(
+		Log.d(
 		        LOG_TAG + "(" + this.childLogTag + ")",
 		        "onNewIntent: " + intent.getAction() + " " + intent.getType() + " " + intent.getScheme());
 		super.onNewIntent(intent);
@@ -109,7 +109,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public void onDestroy() {
-		LOG.v(LOG_TAG + "(" + this.childLogTag + ")", "onDestroy");
+		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "onDestroy");
 		super.onDestroy();
 
 		this.actionHandlerThread.quitSafely();
@@ -129,7 +129,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public Bundle onSaveInstanceState() {
-		LOG.v(LOG_TAG + "(" + this.childLogTag + ")", "onSaveInstanceState");
+		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "onSaveInstanceState");
 		return super.onSaveInstanceState();
 	}
 
@@ -145,7 +145,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public void onRestoreStateForActivityResult(Bundle state, CallbackContext callbackContext) {
-		LOG.v(
+		Log.d(
 		        LOG_TAG + "(" + this.childLogTag + ")",
 		        "onRestoreStateForActivityResult -" + " bundle: " + state.toString() + "; callbackContext: "
 		                + callbackContext.toString());
@@ -164,7 +164,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public Object onMessage(String id, Object data) {
-		LOG.v(
+		Log.d(
 		        LOG_TAG + "(" + this.childLogTag + ")",
 		        "onMessage - " + " id: " + id + "; data: " + data.toString());
 
@@ -189,7 +189,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		LOG.v(
+		Log.d(
 		        LOG_TAG + "(" + this.childLogTag + ")",
 		        "onActivityResult - requestCode: " + requestCode + "; resultCode: " + resultCode + "; intent: "
 		                + intent.toString());
@@ -206,7 +206,7 @@ public class CommonPlugin extends CordovaPlugin {
 	 */
 	@Override
 	public void onReset() {
-		LOG.v(LOG_TAG + "(" + this.childLogTag + ")", "onReset");
+		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "onReset");
 		super.onReset();
 	}
 
@@ -239,7 +239,7 @@ public class CommonPlugin extends CordovaPlugin {
 				logListener.setCallBack(callbackContext);
 			}
 			else {
-				LOG.e(LOG_TAG, "log listener not initialized");
+				Log.e(LOG_TAG, "log listener not initialized");
 			}
 
 			return true;
