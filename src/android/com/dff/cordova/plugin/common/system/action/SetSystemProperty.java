@@ -33,7 +33,7 @@ public class SetSystemProperty extends CordovaAction {
 			while (propKeys.hasNext()) {
 				propKey = propKeys.next();
 				propValue = jsonArgs.getString(propKey);
-				CordovaPluginLog.d(TAG, "set system property: " + propKey + " " + propValue);
+//				CordovaPluginLog.d(TAG, "set system property: " + propKey + " " + propValue);
 				System.setProperty(propKey, propValue);
 			}
 			
