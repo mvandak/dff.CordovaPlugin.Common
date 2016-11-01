@@ -1,12 +1,19 @@
 package com.dff.cordova.plugin.common;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.LOG;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import com.dff.cordova.plugin.common.action.CordovaAction;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.common.log.LogListener;
+import com.dff.cordova.plugin.common.system.action.SetSystemProperty;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,12 +27,16 @@ public class CommonPlugin extends CordovaPlugin {
 	private String childLogTag = "";
 	protected HandlerThread actionHandlerThread;
 	protected Handler actionHandler;
+	protected HashMap<String, Class<? extends CordovaAction>> actions;
 
 	// log service
 	protected static LogListener logListener;
 
 	public CommonPlugin() {
 		super();
+		this.actions  = new HashMap<String, Class<? extends CordovaAction>>();
+		
+		this.actions.put(SetSystemProperty.ACTION, SetSystemProperty.class);
 	}
 
 	public CommonPlugin(String childLogTag) {
@@ -233,6 +244,8 @@ public class CommonPlugin extends CordovaPlugin {
 
 		// CordovaPluginLog.d(LOG_TAG + "(" + this.childLogTag + ")", "call for
 		// action: " + action + "; args: " + args);
+		
+		CordovaAction cordovaAction = null;
 
 		if (action.equals("onLog")) {
 			if (logListener != null) {
@@ -242,6 +255,48 @@ public class CommonPlugin extends CordovaPlugin {
 				Log.e(LOG_TAG, "log listener not initialized");
 			}
 
+			return true;
+		}		
+		else if (this.actions.containsKey(action)) {
+			Class<? extends CordovaAction> actionClass = this.actions.get(action);
+
+			LOG.d(LOG_TAG, "found action: " + actionClass.getName());
+
+			try {
+				cordovaAction = actionClass
+				        .getConstructor(
+				                String.class,
+				                JSONArray.class,
+				                CallbackContext.class,
+				                CordovaInterface.class)
+				        .newInstance(
+				                action,
+				                args,
+				                callbackContext,
+				                this.cordova);
+			}
+			catch (InstantiationException e) {
+				CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+			}
+			catch (IllegalAccessException e) {
+				CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+			}
+			catch (IllegalArgumentException e) {
+				CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+			}
+			catch (InvocationTargetException e) {
+				CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+			}
+			catch (NoSuchMethodException e) {
+				CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+			}
+			catch (SecurityException e) {
+				CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+			}
+		}
+
+		if (cordovaAction != null) {
+			this.actionHandler.post(cordovaAction);
 			return true;
 		}
 

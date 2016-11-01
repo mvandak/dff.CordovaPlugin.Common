@@ -9,16 +9,20 @@
 
 var cordova = require('cordova');
 var feature = "CommonPlugin";
-var self = {};
 
-/*
- * Register callbacks for packagepay log messages.
- *
- * @param {Function} success         - Callback if action is successful.
- * @param {Function} error           - Callback if action is not successful.
- */
-self.onLog = function (success, error) {
-    cordova.exec(success, error, feature, "onLog", []);
-};
+function CommonPlugin () {};
 
-module.exports = self;
+var actions = ["onLog", "setSystemProperty"];
+
+function createActionFunction (action) {
+    return function (success, error, args) {
+        args = args || {};
+        cordova.exec(success, error, feature, action, [args]);
+    }
+}
+
+actions.forEach(function (action) {
+    CommonPlugin.prototype[action] = createActionFunction(action);
+});
+
+module.exports = new CommonPlugin();
