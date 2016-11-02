@@ -6,7 +6,6 @@ import java.util.HashMap;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.LOG;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -260,7 +259,7 @@ public class CommonPlugin extends CordovaPlugin {
 		else if (this.actions.containsKey(action)) {
 			Class<? extends CordovaAction> actionClass = this.actions.get(action);
 
-			LOG.d(LOG_TAG, "found action: " + actionClass.getName());
+			Log.d(LOG_TAG, "found action: " + actionClass.getName());
 
 			try {
 				cordovaAction = actionClass
