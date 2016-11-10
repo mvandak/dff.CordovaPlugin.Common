@@ -35,6 +35,7 @@ public class ServiceHandler extends AbstractPluginListener implements ServiceCon
 		if (this.isBound) {
 			Log.d(TAG, "unbind service " + this.serviceClass.toString());
 			this.cordova.getActivity().unbindService(this);
+			this.isBound = false;
 		}
 	}
 
