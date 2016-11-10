@@ -37,8 +37,8 @@ public abstract class CommonServicePlugin extends CommonPlugin {
 
 	@Override
 	public void onDestroy() {
-		super.onDestroy();
 		this.serviceHandler.unbindService();
+		super.onDestroy();
 	}
 
 	/**

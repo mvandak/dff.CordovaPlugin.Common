@@ -120,9 +120,8 @@ public class CommonPlugin extends CordovaPlugin {
 	@Override
 	public void onDestroy() {
 		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "onDestroy");
+		this.actionHandlerThread.quitSafely();		
 		super.onDestroy();
-
-		this.actionHandlerThread.quitSafely();
 	}
 
 	/**
