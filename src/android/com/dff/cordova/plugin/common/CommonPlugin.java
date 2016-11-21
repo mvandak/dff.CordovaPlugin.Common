@@ -24,8 +24,6 @@ import android.util.Log;
 public class CommonPlugin extends CordovaPlugin {
 	private static final String LOG_TAG = "com.dff.cordova.plugin.common.CommonPlugin";
 	private String childLogTag = "";
-	protected HandlerThread actionHandlerThread;
-	protected Handler actionHandler;
 	protected HashMap<String, Class<? extends CordovaAction>> actions;
 
 	// log service
@@ -50,10 +48,6 @@ public class CommonPlugin extends CordovaPlugin {
 	public void pluginInitialize() {
 		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "pluginInitialize");
 		super.pluginInitialize();
-
-		this.actionHandlerThread = new HandlerThread("PluginActions", Process.THREAD_PRIORITY_BACKGROUND);
-		this.actionHandlerThread.start();
-		this.actionHandler = new Handler(this.actionHandlerThread.getLooper());
 
 		if (logListener == null) {
 			logListener = new LogListener();
@@ -120,7 +114,6 @@ public class CommonPlugin extends CordovaPlugin {
 	@Override
 	public void onDestroy() {
 		Log.d(LOG_TAG + "(" + this.childLogTag + ")", "onDestroy");
-		this.actionHandlerThread.quitSafely();		
 		super.onDestroy();
 	}
 
@@ -294,7 +287,7 @@ public class CommonPlugin extends CordovaPlugin {
 		}
 
 		if (cordovaAction != null) {
-			this.actionHandler.post(cordovaAction);
+			this.cordova.getThreadPool().execute(cordovaAction);
 			return true;
 		}
 
