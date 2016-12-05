@@ -11,6 +11,10 @@ import android.util.Log;
 public abstract class CordovaAction implements Runnable {
 	private static final String LOG_TAG = "com.dff.cordova.plugin.common.action.CordovaAction";
 
+	public String getAction() {
+		return action;
+	}
+
 	protected String action;
 	protected JSONArray args;
 	protected CallbackContext callbackContext;
