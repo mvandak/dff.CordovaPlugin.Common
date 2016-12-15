@@ -1,7 +1,50 @@
 # dff.CordovaPlugin.Common
 ## Supported Platforms
   * Android
-  
-## Install
 
-    cordova plugin add https://github.com/dff-solutions/dff.CordovaPlugin.Common.git
+## Installation
+
+```sh
+$ cordova plugin add https://github.com/dff-solutions/dff.CordovaPlugin.Common.git
+```
+## Usage
+
+### Actions
+
+#### onLog
+```js
+/**
+ * Listen to logs from any plugin.
+ *
+ * @name onLog
+ * @param {function} success Success callback
+ * @param {function} error Error callback
+ */
+CommonPlugin
+    .onLog(function (log) {
+        console.log(log.type, log.tag, log.msg);
+    }, function(reason) {
+        console.log(reason);
+    });
+```
+
+#### setSystemProperty
+```js
+/**
+ * Set a Java system property.
+ * Args key value pairs are interpreted as system properties.
+ *
+ * @name setSystemProperty
+ * @param {function} success Success callback
+ * @param {function} error Error callback
+ * @param {Object} args Named argument
+ */
+CommonPlugin
+    .setSystemProperty(function () {
+        console.log('success');
+    }, function(reason) {
+        console.log(reason);
+    }, {
+        "http.keepAlive": "false"
+    });
+```
