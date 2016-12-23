@@ -7,79 +7,111 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public abstract class AbstractPluginListener {
-	protected CallbackContext callback;
+    protected CallbackContext callback;
 
-	public void setCallBack(CallbackContext callback) {
-		this.callback = callback;
-	}
-	
-	public void onDestroy() {
-		if (this.callback != null) {
-			this.callback.success();
-		}
-	}
-	
-	protected void sendPluginResult() {
-		if (this.callback != null) {
-			PluginResult result = new PluginResult(PluginResult.Status.OK);
+    public static void sendPluginResult(CallbackContext callback) {
+        if (callback != null) {
+            PluginResult result = new PluginResult(PluginResult.Status.OK);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);            
-		}
-	}
-	
-	protected void sendPluginResult(JSONObject message) {
-		if (this.callback != null) {
-			PluginResult result = new PluginResult(PluginResult.Status.OK, message);
-            result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);            
-		}
-	}
-	
-	protected void sendPluginResult(JSONArray message) {
-		if (this.callback != null) {
-			PluginResult result = new PluginResult(PluginResult.Status.OK, message);
-            result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);            
-		}
-	}
+            callback.sendPluginResult(result);
+        }
+    }
 
-	protected void sendPluginResult(String message) {
-		if (this.callback != null) {
-			PluginResult result = new PluginResult(PluginResult.Status.OK, message);
+    public static void sendPluginResult(CallbackContext callback, JSONObject message) {
+        if (callback != null) {
+            PluginResult result = new PluginResult(PluginResult.Status.OK, message);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);            
-		}
-	}
-	
-	protected void sendPluginResult(boolean b) {
-		if (this.callback != null) {
-			PluginResult result = new PluginResult(PluginResult.Status.OK, b);
+            callback.sendPluginResult(result);
+        }
+    }
+
+    public static void sendPluginResult(CallbackContext callback, JSONArray message) {
+        if (callback != null) {
+            PluginResult result = new PluginResult(PluginResult.Status.OK, message);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);            
-		}
-	}
-	
-	protected void sendPluginResult(int i) {
-		if (this.callback != null) {
-			PluginResult result = new PluginResult(PluginResult.Status.OK, i);
+            callback.sendPluginResult(result);
+        }
+    }
+
+    public static void sendPluginResult(CallbackContext callback, String message) {
+        if (callback != null) {
+            PluginResult result = new PluginResult(PluginResult.Status.OK, message);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);            
-		}
-	}
-	
-	protected void sendPluginResult(JSONException je) {
-		if (this.callback != null) {
-			PluginResult result = new PluginResult(PluginResult.Status.JSON_EXCEPTION, je.getMessage());
+            callback.sendPluginResult(result);
+        }
+    }
+
+    public static void sendPluginResult(CallbackContext callback, boolean b) {
+        if (callback != null) {
+            PluginResult result = new PluginResult(PluginResult.Status.OK, b);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);
-		}
-	}
-	
-	protected void sendPluginResult(Exception e) {
-		if (this.callback != null) {
-			PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getMessage());
+            callback.sendPluginResult(result);
+        }
+    }
+
+    public static void sendPluginResult(CallbackContext callback, int i) {
+        if (callback != null) {
+            PluginResult result = new PluginResult(PluginResult.Status.OK, i);
             result.setKeepCallback(true);
-            this.callback.sendPluginResult(result);
-		}
-	}
+            callback.sendPluginResult(result);
+        }
+    }
+
+    public static void sendPluginResult(CallbackContext callback, JSONException je) {
+        if (callback != null) {
+            PluginResult result = new PluginResult(PluginResult.Status.JSON_EXCEPTION, je.getMessage());
+            result.setKeepCallback(true);
+            callback.sendPluginResult(result);
+        }
+    }
+
+    public static void sendPluginResult(CallbackContext callback, Exception e) {
+        if (callback != null) {
+            PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getMessage());
+            result.setKeepCallback(true);
+            callback.sendPluginResult(result);
+        }
+    }
+
+    public void setCallBack(CallbackContext callback) {
+        this.callback = callback;
+    }
+
+    public void onDestroy() {
+        if (this.callback != null) {
+            this.callback.success();
+        }
+    }
+
+    protected void sendPluginResult() {
+        sendPluginResult(this.callback);
+    }
+
+    protected void sendPluginResult(JSONObject message) {
+        sendPluginResult(this.callback, message);
+    }
+
+    protected void sendPluginResult(JSONArray message) {
+        sendPluginResult(this.callback, message);
+    }
+
+    protected void sendPluginResult(String message) {
+        sendPluginResult(this.callback, message);
+    }
+
+    protected void sendPluginResult(boolean b) {
+        sendPluginResult(this.callback, b);
+    }
+
+    protected void sendPluginResult(int i) {
+        sendPluginResult(this.callback, i);
+    }
+
+    protected void sendPluginResult(JSONException je) {
+        sendPluginResult(this.callback, je);
+    }
+
+    protected void sendPluginResult(Exception e) {
+        sendPluginResult(this.callback, e);
+    }
 }
