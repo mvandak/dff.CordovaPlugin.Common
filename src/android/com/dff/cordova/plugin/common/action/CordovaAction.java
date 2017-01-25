@@ -61,7 +61,7 @@ public abstract class CordovaAction implements Runnable {
 	 */
 	@Override
 	public void run() {
-		Log.d(LOG_TAG, "running action: " + this.action + "; args: " + this.args);
+		Log.d(LOG_TAG, "running action: " + this.action);
 	}
 
 }
