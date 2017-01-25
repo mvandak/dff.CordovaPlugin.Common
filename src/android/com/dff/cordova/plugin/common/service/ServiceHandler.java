@@ -58,6 +58,7 @@ public class ServiceHandler extends AbstractPluginListener implements ServiceCon
                 CordovaPluginLog.e(TAG, e.getMessage(), e);
             }
         }
+        mMessages.clear();
     }
 
     @Override
