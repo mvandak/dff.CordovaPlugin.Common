@@ -154,9 +154,8 @@ public class CommonPlugin extends CordovaPlugin {
      */
     @Override
     public Object onMessage(String id, Object data) {
-        Log.d(
-                LOG_TAG + "(" + this.childLogTag + ")",
-                "onMessage - " + " id: " + id + "; data: " + data.toString());
+        Log.d(LOG_TAG + "(" + this.childLogTag + ")",
+                "onMessage - " + " id: " + id + "; data: " + data);
 
         return super.onMessage(id, data);
     }
