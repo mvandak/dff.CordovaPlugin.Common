@@ -48,3 +48,6 @@ CommonPlugin
         "http.keepAlive": "false"
     });
 ```
+
+## Documentation
+- <a href="https://dff-solutions.github.io/dff.CordovaPlugin.Common/" target="_blank" >JAVA DOC</a>
