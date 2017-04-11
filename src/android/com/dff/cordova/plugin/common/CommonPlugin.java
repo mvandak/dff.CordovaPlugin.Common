@@ -14,10 +14,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CommonPlugin extends CordovaPlugin {
+
     private static final String LOG_TAG = "com.dff.cordova.plugin.common.CommonPlugin";
+
+    protected static ArrayList<String> sPermissionsList;
+    private static final int PERMISSION_REQUEST_CODE = 100;
     // log service
     protected static LogListener logListener;
     protected HashMap<String, Class<? extends CordovaAction>> actions;
@@ -50,6 +55,30 @@ public class CommonPlugin extends CordovaPlugin {
     }
 
     /**
+     * allow subclass to add their permission to the local permissions list
+     *
+     * @param permission - the permission to add
+     */
+    public static synchronized void addPermission(String permission) {
+        if (!sPermissionsList.contains(permission)) {
+            sPermissionsList.add(permission);
+        }
+    }
+
+    /**
+     * request permissions if they are not granted
+     */
+    private void requestPermissions() {
+        for (String permission : sPermissionsList) {
+            if (!cordova.hasPermission(permission)) {
+                cordova.requestPermissions(this, PERMISSION_REQUEST_CODE,
+                    sPermissionsList.toArray(new String[sPermissionsList.size()]));
+                break;
+            }
+        }
+    }
+
+    /**
      * Called when the system is about to start resuming a previous activity.
      *
      * @param multitasking Flag indicating if multitasking is turned on for app
@@ -78,6 +107,7 @@ public class CommonPlugin extends CordovaPlugin {
     public void onStart() {
         Log.d(LOG_TAG + "(" + this.childLogTag + ")", "onStart");
         super.onStart();
+        requestPermissions();
     }
 
     /**
@@ -95,8 +125,8 @@ public class CommonPlugin extends CordovaPlugin {
     @Override
     public void onNewIntent(Intent intent) {
         Log.d(
-                LOG_TAG + "(" + this.childLogTag + ")",
-                "onNewIntent: " + intent.getAction() + " " + intent.getType() + " " + intent.getScheme());
+            LOG_TAG + "(" + this.childLogTag + ")",
+            "onNewIntent: " + intent.getAction() + " " + intent.getType() + " " + intent.getScheme());
         super.onNewIntent(intent);
     }
 
@@ -138,9 +168,9 @@ public class CommonPlugin extends CordovaPlugin {
     @Override
     public void onRestoreStateForActivityResult(Bundle state, CallbackContext callbackContext) {
         Log.d(
-                LOG_TAG + "(" + this.childLogTag + ")",
-                "onRestoreStateForActivityResult -" + " bundle: " + state.toString() + "; callbackContext: "
-                        + callbackContext.toString());
+            LOG_TAG + "(" + this.childLogTag + ")",
+            "onRestoreStateForActivityResult -" + " bundle: " + state.toString() + "; callbackContext: "
+                + callbackContext.toString());
 
         super.onRestoreStateForActivityResult(state, callbackContext);
     }
@@ -155,7 +185,7 @@ public class CommonPlugin extends CordovaPlugin {
     @Override
     public Object onMessage(String id, Object data) {
         Log.d(LOG_TAG + "(" + this.childLogTag + ")",
-                "onMessage - " + " id: " + id + "; data: " + data);
+            "onMessage - " + " id: " + id + "; data: " + data);
 
         return super.onMessage(id, data);
     }
@@ -176,9 +206,9 @@ public class CommonPlugin extends CordovaPlugin {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         Log.d(
-                LOG_TAG + "(" + this.childLogTag + ")",
-                "onActivityResult - requestCode: " + requestCode + "; resultCode: " + resultCode + "; intent: "
-                        + intent.toString());
+            LOG_TAG + "(" + this.childLogTag + ")",
+            "onActivityResult - requestCode: " + requestCode + "; resultCode: " + resultCode + "; intent: "
+                + intent.toString());
         super.onActivityResult(requestCode, resultCode, intent);
     }
 
@@ -212,7 +242,7 @@ public class CommonPlugin extends CordovaPlugin {
      */
     @Override
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext)
-            throws JSONException {
+        throws JSONException {
 
         Log.v(LOG_TAG + "(" + this.childLogTag + ")", "call for action: " + action + "; args: " + args);
 
@@ -233,16 +263,16 @@ public class CommonPlugin extends CordovaPlugin {
 
             try {
                 cordovaAction = actionClass
-                        .getConstructor(
-                                String.class,
-                                JSONArray.class,
-                                CallbackContext.class,
-                                CordovaInterface.class)
-                        .newInstance(
-                                action,
-                                args,
-                                callbackContext,
-                                this.cordova);
+                    .getConstructor(
+                        String.class,
+                        JSONArray.class,
+                        CallbackContext.class,
+                        CordovaInterface.class)
+                    .newInstance(
+                        action,
+                        args,
+                        callbackContext,
+                        this.cordova);
             } catch (InstantiationException e) {
                 CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
             } catch (IllegalAccessException e) {
