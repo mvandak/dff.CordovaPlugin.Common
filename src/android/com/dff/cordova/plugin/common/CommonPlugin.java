@@ -1,6 +1,7 @@
 package com.dff.cordova.plugin.common;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import com.dff.cordova.plugin.common.action.CordovaAction;
@@ -21,7 +22,7 @@ public class CommonPlugin extends CordovaPlugin {
 
     private static final String LOG_TAG = "com.dff.cordova.plugin.common.CommonPlugin";
 
-    protected static ArrayList<String> sPermissionsList;
+    protected static ArrayList<String> sPermissionsList = new ArrayList<>();
     private static final int PERMISSION_REQUEST_CODE = 100;
     // log service
     protected static LogListener logListener;
@@ -74,6 +75,24 @@ public class CommonPlugin extends CordovaPlugin {
                 cordova.requestPermissions(this, PERMISSION_REQUEST_CODE,
                     sPermissionsList.toArray(new String[sPermissionsList.size()]));
                 break;
+            }
+        }
+    }
+
+    /**
+     * If permissions are denied log and error and leave method
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     * @throws JSONException
+     */
+    public void onRequestPermissionResult(int requestCode, String[] permissions,
+                                          int[] grantResults) throws JSONException {
+        for (int r : grantResults) {
+            if (r == PackageManager.PERMISSION_DENIED) {
+                CordovaPluginLog.e(LOG_TAG, "LOCATION PERMISSIONS DENIED");
+                return;
             }
         }
     }
