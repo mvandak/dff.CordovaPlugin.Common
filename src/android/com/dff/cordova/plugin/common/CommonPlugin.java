@@ -22,7 +22,7 @@ public class CommonPlugin extends CordovaPlugin {
 
     private static final String LOG_TAG = "com.dff.cordova.plugin.common.CommonPlugin";
 
-    protected static ArrayList<String> sPermissionsList = new ArrayList<>();
+    protected static ArrayList<String> sPermissionsList = new ArrayList<String>();
     private static final int PERMISSION_REQUEST_CODE = 100;
     // log service
     protected static LogListener logListener;
