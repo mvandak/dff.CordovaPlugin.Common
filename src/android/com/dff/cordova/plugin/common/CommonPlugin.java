@@ -91,7 +91,7 @@ public class CommonPlugin extends CordovaPlugin {
                                           int[] grantResults) throws JSONException {
         for (int r : grantResults) {
             if (r == PackageManager.PERMISSION_DENIED) {
-                CordovaPluginLog.e(LOG_TAG, "LOCATION PERMISSIONS DENIED");
+                CordovaPluginLog.e(LOG_TAG, "PERMISSION DENIED");
                 return;
             }
         }
