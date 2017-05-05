@@ -1,0 +1,16 @@
+{
+  "name": "dff-cordova-plugin-common",
+  "version": "1.1.2",
+  "description": "Common Plugin",
+  "cordova": {
+    "id": "dff-cordova-plugin-common",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "cordova-android"
+  ],
+  "license": "Apache-2.0"
+}
