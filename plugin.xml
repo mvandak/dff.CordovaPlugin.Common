@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin id="dff-cordova-plugin-common" version="2.0.0"
+<plugin id="dff-cordova-plugin-common" version="2.0.1"
     xmlns="http://www.phonegap.com/ns/plugins/1.0">
 
     <name>Common</name>
@@ -50,5 +50,6 @@
             target-dir="src/com/dff/cordova/plugin/common" />
         <source-file src="src/main/java/com/dff/cordova/plugin/common/CommonPlugin.java"
             target-dir="src/com/dff/cordova/plugin/common" />
+        <source-file src="build-extras.gradle" target-dir="src/.."/>
     </platform>
 </plugin>
