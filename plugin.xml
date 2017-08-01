@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin id="dff-cordova-plugin-common" version="2.0.2"
+<plugin name="common" id="dff-cordova-plugin-common" spec="2.0.2" version="2.0.2"
     xmlns="http://www.phonegap.com/ns/plugins/1.0">
 
     <name>Common</name>
@@ -41,7 +41,8 @@
         <source-file
             src="src/main/java/com/dff/cordova/plugin/common/service/action/UnbindService.java"
             target-dir="src/com/dff/cordova/plugin/common/service/action" />
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/service/action/BindService.java"
+        <source-file
+            src="src/main/java/com/dff/cordova/plugin/common/service/action/BindService.java"
             target-dir="src/com/dff/cordova/plugin/common/service/action" />
         <source-file
             src="src/main/java/com/dff/cordova/plugin/common/service/CommonServicePlugin.java"
@@ -52,6 +53,6 @@
             target-dir="src/com/dff/cordova/plugin/common" />
         <source-file src="src/main/java/com/dff/cordova/plugin/common/CommonPlugin.java"
             target-dir="src/com/dff/cordova/plugin/common" />
-        <source-file src="build-extras.gradle" target-dir="src/.."/>
+        <source-file src="build-extras.gradle" target-dir="src/.." />
     </platform>
 </plugin>
