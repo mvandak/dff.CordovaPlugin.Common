@@ -1,13 +1,16 @@
 {
   "name": "dff-cordova-plugin-common",
-  "version": "1.2.0",
-  "description": "dff cordova plugin common",
+  "version": "2.0.5",
+  "description": "Common Plugin",
   "main": "www/common.js",
   "directories": {
     "doc": "docs"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "cordova": {
+    "id": "dff-cordova-plugin-common",
+    "platforms": [
+      "android"
+    ]
   },
   "repository": {
     "type": "git",
