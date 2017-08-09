@@ -1,3 +1,5 @@
 /bin/
 .classpath
 *.iml
+build
+proguard-rules.pro
