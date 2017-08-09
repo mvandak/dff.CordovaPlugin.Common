@@ -54,7 +54,7 @@
         <source-file src="src/main/java/com/dff/cordova/plugin/common/CommonPlugin.java"
             target-dir="src/com/dff/cordova/plugin/common" />
         <source-file src="src/main/java/com/dff/cordova/plugin/common/action/Action.java"
-            target-dir="src/com/dff/cordova/plugin/common/actions" />
+            target-dir="src/com/dff/cordova/plugin/common/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/common/interfaces/Executable.java"
             target-dir="src/com/dff/cordova/plugin/common/interfaces" />
         <framework custom="true" src="build-common-plugin.gradle" type="gradleReference" />
