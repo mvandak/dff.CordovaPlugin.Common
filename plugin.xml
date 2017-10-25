@@ -3,7 +3,7 @@
     xmlns="http://www.phonegap.com/ns/plugins/1.0">
 
     <name>Common</name>
-    <version>2.0.5</version>
+    <version>2.0.6</version>
     <repo>https://github.com/dff-solutions/dff.CordovaPlugin.Common.git#2.0.4</repo>
     <description>Common Plugin</description>
     <author>dff solutions</author>

@@ -22,7 +22,7 @@ public class CommonPlugin extends CordovaPlugin {
 
     private static final String LOG_TAG = "com.dff.cordova.plugin.common.CommonPlugin";
 
-    protected static ArrayList<String> sPermissionsList = new ArrayList<String>();
+    protected static ArrayList<String> sPermissionsList = new ArrayList<>();
     private static final int PERMISSION_REQUEST_CODE = 100;
     // log service
     protected static LogListener logListener;
@@ -31,7 +31,7 @@ public class CommonPlugin extends CordovaPlugin {
 
     public CommonPlugin() {
         super();
-        this.actions = new HashMap<String, Class<? extends CordovaAction>>();
+        this.actions = new HashMap<>();
 
         this.actions.put(SetSystemProperty.ACTION, SetSystemProperty.class);
     }
@@ -261,7 +261,7 @@ public class CommonPlugin extends CordovaPlugin {
      */
     @Override
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext)
-        throws JSONException {
+        throws JSONException, NoSuchMethodException {
 
         Log.v(LOG_TAG + "(" + this.childLogTag + ")", "call for action: " + action + "; args: " + args);
 
@@ -292,17 +292,12 @@ public class CommonPlugin extends CordovaPlugin {
                         args,
                         callbackContext,
                         this.cordova);
-            } catch (InstantiationException e) {
-                CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
-            } catch (IllegalAccessException e) {
-                CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
-            } catch (IllegalArgumentException e) {
-                CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
-            } catch (InvocationTargetException e) {
-                CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
-            } catch (NoSuchMethodException e) {
-                CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
-            } catch (SecurityException e) {
+            } catch (
+                InstantiationException |
+                    IllegalAccessException |
+                    InvocationTargetException |
+                    IllegalArgumentException |
+                    SecurityException e) {
                 CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
             }
         }

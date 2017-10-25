@@ -1,5 +1,7 @@
 package com.dff.cordova.plugin.common.service;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import com.dff.cordova.plugin.common.CommonPlugin;
 import com.dff.cordova.plugin.common.action.CordovaAction;
@@ -19,7 +21,7 @@ public abstract class CommonServicePlugin extends CommonPlugin {
     private static final String TAG = "com.dff.cordova.plugin.common.service.CommonServicePlugin";
     protected ServiceHandler serviceHandler;
     private HashMap<String, Class<? extends ServiceAction>> actions =
-            new HashMap<String, Class<? extends ServiceAction>>();
+        new HashMap<String, Class<? extends ServiceAction>>();
 
     public CommonServicePlugin(String TAG) {
         super(TAG);
@@ -53,9 +55,10 @@ public abstract class CommonServicePlugin extends CommonPlugin {
      * @param callbackContext The callback context used when calling back into JavaScript.
      * @return Whether the action was valid.
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext)
-            throws JSONException {
+        throws JSONException, NoSuchMethodException {
         Log.v(TAG, "call for action: " + action + "; args: " + args);
 
         CordovaAction cordovaAction = null;
@@ -70,23 +73,19 @@ public abstract class CommonServicePlugin extends CommonPlugin {
 
             try {
                 cordovaAction = actionClass.getConstructor(
-                        String.class,
-                        JSONArray.class,
-                        CallbackContext.class,
-                        CordovaInterface.class,
-                        ServiceHandler.class)
-                        .newInstance(action, args, callbackContext, this.cordova, this.serviceHandler);
-            } catch (InstantiationException e) {
-                CordovaPluginLog.e(TAG, e.getMessage(), e);
-            } catch (IllegalAccessException e) {
-                CordovaPluginLog.e(TAG, e.getMessage(), e);
-            } catch (IllegalArgumentException e) {
-                CordovaPluginLog.e(TAG, e.getMessage(), e);
-            } catch (InvocationTargetException e) {
-                CordovaPluginLog.e(TAG, e.getMessage(), e);
-            } catch (NoSuchMethodException e) {
-                CordovaPluginLog.e(TAG, e.getMessage(), e);
-            } catch (SecurityException e) {
+                    String.class,
+                    JSONArray.class,
+                    CallbackContext.class,
+                    CordovaInterface.class,
+                    ServiceHandler.class)
+                    .newInstance(action, args, callbackContext, this.cordova, this.serviceHandler);
+            } catch
+                (InstantiationException
+                    | IllegalAccessException
+                    | IllegalArgumentException
+                    | InvocationTargetException
+                    | NoSuchMethodException
+                    | SecurityException e) {
                 CordovaPluginLog.e(TAG, e.getMessage(), e);
             }
         }

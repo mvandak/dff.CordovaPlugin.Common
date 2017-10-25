@@ -1,6 +1,11 @@
 # dff.CordovaPlugin.Common
+
 ## Supported Platforms
   * Android
+  
+  ## Plugin@latest
+  
+  - Android: 2.0.6
 
 ## Installation
 

@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 public class ServiceHandler extends AbstractPluginListener implements ServiceConnection {
     private static final String TAG = "com.dff.cordova.plugin.common.service.ServiceHandler";
-    protected ArrayList<Message> mMessages = new ArrayList<Message>();
-    boolean isBound = false;
+    protected ArrayList<Message> mMessages = new ArrayList<>();
+    private boolean isBound = false;
     private CordovaInterface cordova;
     private Class<? extends Service> serviceClass;
     private Messenger service;
@@ -36,19 +36,15 @@ public class ServiceHandler extends AbstractPluginListener implements ServiceCon
     }
 
     public void unbindService() {
-        if (this.isBound) {
-            Log.d(TAG, "unbind service " + this.serviceClass.toString());
-            this.cordova.getActivity().unbindService(this);
-            this.isBound = false;
-        }
+        Log.d(TAG, "unbind service " + this.serviceClass.toString());
+        this.cordova.getActivity().unbindService(this);
     }
 
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
         Log.d(TAG, "onServiceConnected: " + name.toString());
         this.setService(new Messenger(service));
-        this.isBound = true;
-        super.sendPluginResult(this.isBound);
+        super.sendPluginResult(true);
 
         // send queued messages to service
         for (Message msg : mMessages) {
@@ -65,8 +61,7 @@ public class ServiceHandler extends AbstractPluginListener implements ServiceCon
     public void onServiceDisconnected(ComponentName name) {
         Log.d(TAG, "onServiceDisconnected: " + name.toString());
         setService(null);
-        this.isBound = false;
-        super.sendPluginResult(this.isBound);
+        super.sendPluginResult(false);
     }
 
     public Messenger getService() {
