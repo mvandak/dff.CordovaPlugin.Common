@@ -58,7 +58,7 @@ public abstract class CommonServicePlugin extends CommonPlugin {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext)
-        throws JSONException, NoSuchMethodException {
+        throws JSONException {
         Log.v(TAG, "call for action: " + action + "; args: " + args);
 
         CordovaAction cordovaAction = null;

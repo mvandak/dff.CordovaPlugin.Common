@@ -261,7 +261,7 @@ public class CommonPlugin extends CordovaPlugin {
      */
     @Override
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext)
-        throws JSONException, NoSuchMethodException {
+        throws JSONException {
 
         Log.v(LOG_TAG + "(" + this.childLogTag + ")", "call for action: " + action + "; args: " + args);
 
@@ -297,8 +297,9 @@ public class CommonPlugin extends CordovaPlugin {
                     IllegalAccessException |
                     InvocationTargetException |
                     IllegalArgumentException |
+                    NoSuchMethodException |
                     SecurityException e) {
-                CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+                CordovaPluginLog.e(LOG_TAG, "Error: ", e);
             }
         }
 
