@@ -1,6 +1,6 @@
 {
   "name": "dff-cordova-plugin-common",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Common Plugin",
   "main": "www/common.js",
   "directories": {

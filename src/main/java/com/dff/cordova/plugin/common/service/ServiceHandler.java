@@ -38,12 +38,14 @@ public class ServiceHandler extends AbstractPluginListener implements ServiceCon
     public void unbindService() {
         Log.d(TAG, "unbind service " + this.serviceClass.toString());
         this.cordova.getActivity().unbindService(this);
+        this.isBound = false;
     }
 
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
         Log.d(TAG, "onServiceConnected: " + name.toString());
         this.setService(new Messenger(service));
+        this.isBound = true;
         super.sendPluginResult(true);
 
         // send queued messages to service
@@ -61,6 +63,7 @@ public class ServiceHandler extends AbstractPluginListener implements ServiceCon
     public void onServiceDisconnected(ComponentName name) {
         Log.d(TAG, "onServiceDisconnected: " + name.toString());
         setService(null);
+        this.isBound = false;
         super.sendPluginResult(false);
     }
 

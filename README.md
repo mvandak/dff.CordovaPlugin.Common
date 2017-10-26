@@ -5,7 +5,7 @@
   
   ## Plugin@latest
   
-  - Android: 2.0.6
+  - Android: 2.0.8
 
 ## Installation
 

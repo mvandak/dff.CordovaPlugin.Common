@@ -292,6 +292,12 @@ public class CommonPlugin extends CordovaPlugin {
                         args,
                         callbackContext,
                         this.cordova);
+                if (cordovaAction != null) {
+                    this.cordova.getThreadPool().execute(cordovaAction);
+                    return true;
+                }
+
+
             } catch (
                 InstantiationException |
                     IllegalAccessException |
@@ -301,11 +307,6 @@ public class CommonPlugin extends CordovaPlugin {
                     SecurityException e) {
                 CordovaPluginLog.e(LOG_TAG, "Error: ", e);
             }
-        }
-
-        if (cordovaAction != null) {
-            this.cordova.getThreadPool().execute(cordovaAction);
-            return true;
         }
 
         return super.execute(action, args, callbackContext);
