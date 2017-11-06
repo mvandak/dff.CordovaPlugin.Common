@@ -265,7 +265,7 @@ public class CommonPlugin extends CordovaPlugin {
 
         Log.v(LOG_TAG + "(" + this.childLogTag + ")", "call for action: " + action + "; args: " + args);
 
-        CordovaAction cordovaAction = null;
+        CordovaAction cordovaAction;
 
         if (action.equals("onLog")) {
             if (logListener != null) {
@@ -296,8 +296,6 @@ public class CommonPlugin extends CordovaPlugin {
                     this.cordova.getThreadPool().execute(cordovaAction);
                     return true;
                 }
-
-
             } catch (
                 InstantiationException |
                     IllegalAccessException |
@@ -306,9 +304,9 @@ public class CommonPlugin extends CordovaPlugin {
                     NoSuchMethodException |
                     SecurityException e) {
                 CordovaPluginLog.e(LOG_TAG, "Error: ", e);
+                return false;
             }
         }
-
-        return super.execute(action, args, callbackContext);
+        return false;
     }
 }
