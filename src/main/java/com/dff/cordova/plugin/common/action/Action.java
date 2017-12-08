@@ -9,22 +9,30 @@ import org.json.JSONArray;
  * Created by anahas on 19.06.2017.
  *
  * @author Anthony Nahas
- * @version 1.0
+ * @version 2.0
  * @since 19.06.17
  */
 
 public abstract class Action implements Executable {
 
-    public CallbackContext callbackContext;
-    public JSONArray args;
+    private CallbackContext mCallbackContext;
+    private JSONArray mArgs;
+
+    public CallbackContext getCallbackContext() {
+        return mCallbackContext;
+    }
+
+    public JSONArray getArgs() {
+        return mArgs;
+    }
 
     public Action with(CallbackContext callbackContext) {
-        this.callbackContext = callbackContext;
+        this.mCallbackContext = callbackContext;
         return this;
     }
 
     public Action andHasArguments(JSONArray args) {
-        this.args = args;
+        this.mArgs = args;
         return this;
     }
 }

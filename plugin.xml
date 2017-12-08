@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin name="common"
         id="dff-cordova-plugin-common"
-        spec="2.0.11"
-        version="2.0.11"
+        spec="2.0.12"
+        version="2.0.12"
         xmlns="http://www.phonegap.com/ns/plugins/1.0">
 
     <name>Common</name>
     <version>2.0.11</version>
-    <repo>https://github.com/dff-solutions/dff.CordovaPlugin.Common.git#2.0.11</repo>
+    <repo>https://github.com/dff-solutions/dff.CordovaPlugin.Common.git#2.0.12</repo>
     <description>Common Plugin</description>
     <author>dff solutions</author>
     <keywords>phonegap,cordova,common,dff</keywords>
