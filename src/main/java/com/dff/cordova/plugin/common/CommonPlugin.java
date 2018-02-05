@@ -210,28 +210,6 @@ public class CommonPlugin extends CordovaPlugin {
     }
 
     /**
-     * Called when an activity you launched exits, giving you the requestCode
-     * you started it with, the resultCode it returned, and any additional data
-     * from it.
-     *
-     * @param requestCode The request code originally supplied to
-     *                    startActivityForResult(), allowing you to identify who this
-     *                    result came from.
-     * @param resultCode  The integer result code returned by the child activity through
-     *                    its setResult().
-     * @param intent      An Intent, which can return result data to the caller (various
-     *                    data can be attached to Intent "extras").
-     */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        Log.d(
-            LOG_TAG + "(" + this.childLogTag + ")",
-            "onActivityResult - requestCode: " + requestCode + "; resultCode: " + resultCode + "; intent: "
-                + intent.toString());
-        super.onActivityResult(requestCode, resultCode, intent);
-    }
-
-    /**
      * Called when the WebView does a top-level navigation or refreshes.
      * <p>
      * Plugins should stop any long-running processes and clean up internal

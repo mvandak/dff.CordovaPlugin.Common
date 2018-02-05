@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin name="common"
         id="dff-cordova-plugin-common"
-        spec="2.0.12"
-        version="2.0.12"
+        spec="2.0.13"
+        version="2.0.13"
         xmlns="http://www.phonegap.com/ns/plugins/1.0">
 
     <name>Common</name>
