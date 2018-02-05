@@ -25,41 +25,20 @@
             </feature>
         </config-file>
 
-        <source-file
-            src="src/main/java/com/dff/cordova/plugin/common/system/action/SetSystemProperty.java"
-            target-dir="src/com/dff/cordova/plugin/common/system/action"/>
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/action/CordovaAction.java"
-                     target-dir="src/com/dff/cordova/plugin/common/action"/>
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/log/AbstractLogListener.java"
-                     target-dir="src/com/dff/cordova/plugin/common/log"/>
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/log/LogListenerInterface.java"
-                     target-dir="src/com/dff/cordova/plugin/common/log"/>
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/log/LogListener.java"
-                     target-dir="src/com/dff/cordova/plugin/common/log"/>
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/log/CordovaPluginLog.java"
-                     target-dir="src/com/dff/cordova/plugin/common/log"/>
-        <source-file
-            src="src/main/java/com/dff/cordova/plugin/common/service/action/ServiceAction.java"
-            target-dir="src/com/dff/cordova/plugin/common/service/action"/>
-        <source-file
-            src="src/main/java/com/dff/cordova/plugin/common/service/action/UnbindService.java"
-            target-dir="src/com/dff/cordova/plugin/common/service/action"/>
-        <source-file
-            src="src/main/java/com/dff/cordova/plugin/common/service/action/BindService.java"
-            target-dir="src/com/dff/cordova/plugin/common/service/action"/>
-        <source-file
-            src="src/main/java/com/dff/cordova/plugin/common/service/CommonServicePlugin.java"
-            target-dir="src/com/dff/cordova/plugin/common/service"/>
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/service/ServiceHandler.java"
-                     target-dir="src/com/dff/cordova/plugin/common/service"/>
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/AbstractPluginListener.java"
-                     target-dir="src/com/dff/cordova/plugin/common"/>
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/CommonPlugin.java"
-                     target-dir="src/com/dff/cordova/plugin/common"/>
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/action/Action.java"
-                     target-dir="src/com/dff/cordova/plugin/common/action"/>
-        <source-file src="src/main/java/com/dff/cordova/plugin/common/interfaces/Executable.java"
-                     target-dir="src/com/dff/cordova/plugin/common/interfaces"/>
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/AbstractPluginListener.java" target-dir="src/com/dff/cordova/plugin/common" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/action/CordovaAction.java" target-dir="src/com/dff/cordova/plugin/common/action" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/CommonPlugin.java" target-dir="src/com/dff/cordova/plugin/common" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/log/AbstractLogListener.java" target-dir="src/com/dff/cordova/plugin/common/log" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/log/CordovaPluginLog.java" target-dir="src/com/dff/cordova/plugin/common/log" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/log/LogListener.java" target-dir="src/com/dff/cordova/plugin/common/log" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/log/LogListenerInterface.java" target-dir="src/com/dff/cordova/plugin/common/log" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/service/action/BindService.java" target-dir="src/com/dff/cordova/plugin/common/service/action" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/service/action/ServiceAction.java" target-dir="src/com/dff/cordova/plugin/common/service/action" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/service/action/UnbindService.java" target-dir="src/com/dff/cordova/plugin/common/service/action" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/service/CommonServicePlugin.java" target-dir="src/com/dff/cordova/plugin/common/service" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/service/ServiceHandler.java" target-dir="src/com/dff/cordova/plugin/common/service" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/common/system/action/SetSystemProperty.java" target-dir="src/com/dff/cordova/plugin/common/system/action" />
+
         <framework custom="true" src="build-common-plugin.gradle" type="gradleReference"/>
     </platform>
 </plugin>
