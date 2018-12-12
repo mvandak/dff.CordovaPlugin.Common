@@ -18,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 public abstract class CommonServicePlugin extends CommonPlugin {
-    private static final String TAG = "com.dff.cordova.plugin.common.service.CommonServicePlugin";
+    private static final String TAG = "CommonServicePlugin";
     protected ServiceHandler serviceHandler;
     private HashMap<String, Class<? extends ServiceAction>> actions =
         new HashMap<String, Class<? extends ServiceAction>>();

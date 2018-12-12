@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public abstract class CordovaAction implements Runnable {
-    private static final String LOG_TAG = "com.dff.cordova.plugin.common.action.CordovaAction";
+    private static final String LOG_TAG = "CordovaAction";
     protected String action;
     protected JSONArray args;
     protected CallbackContext callbackContext;

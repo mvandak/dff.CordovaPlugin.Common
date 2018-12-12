@@ -17,7 +17,7 @@ import org.apache.cordova.CordovaInterface;
 import java.util.ArrayList;
 
 public class ServiceHandler extends AbstractPluginListener implements ServiceConnection {
-    private static final String TAG = "com.dff.cordova.plugin.common.service.ServiceHandler";
+    private static final String TAG = "ServiceHandler";
     protected ArrayList<Message> mMessages = new ArrayList<>();
     private boolean isBound = false;
     private CordovaInterface cordova;

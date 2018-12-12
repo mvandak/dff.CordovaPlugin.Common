@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 public class CommonPlugin extends CordovaPlugin {
 
-    private static final String LOG_TAG = "com.dff.cordova.plugin.common.CommonPlugin";
+    private static final String LOG_TAG = "CommonPlugin";
 
     protected static ArrayList<String> sPermissionsList = new ArrayList<>();
     private static final int PERMISSION_REQUEST_CODE = 100;
