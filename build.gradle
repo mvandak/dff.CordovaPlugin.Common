@@ -13,7 +13,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'idea'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
 
     repositories {
         jcenter()
@@ -24,7 +24,7 @@ android {
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 2003
         versionName "2.0.12"
 
@@ -45,7 +45,7 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:25.3.1'
+    implementation 'com.android.support:appcompat-v7:26.0.1'
     testImplementation 'junit:junit:4.12'
 }
 
