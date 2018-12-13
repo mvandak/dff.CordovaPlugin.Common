@@ -52,6 +52,6 @@ dependencies {
 idea {
     module {
         sourceDirs += file('src/main/java')
-        testSourceDirs += file('test/java')
+        testSourceDirs += file('src/test/java')
     }
 }
