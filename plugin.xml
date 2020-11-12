@@ -7,7 +7,7 @@
 
     <name>Common</name>
     <version>2.0.13-0</version>
-    <repo>https://github.com/dff-solutions/dff.CordovaPlugin.Common.git#2.0.12</repo>
+    <repo>https://github.com/dff-solutions/dff.CordovaPlugin.Common.git#PREVENTBATTERYOPT</repo>
     <description>Common Plugin</description>
     <author>dff solutions</author>
     <keywords>phonegap,cordova,common,dff</keywords>
