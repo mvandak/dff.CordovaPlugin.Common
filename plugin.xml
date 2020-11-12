@@ -24,9 +24,9 @@
                 <param name="onload" value="true"/>
             </feature>
         </config-file>
-        <config-file target="AndroidManifest.xml" parent="/*">
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/uses-permission" xmlns:android="http://schemas.android.com/apk/res/android">
             <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-        </config-file>
+        </edit-config>
         <source-file
             src="src/main/java/com/dff/cordova/plugin/common/system/action/SetSystemProperty.java"
             target-dir="src/com/dff/cordova/plugin/common/system/action"/>
