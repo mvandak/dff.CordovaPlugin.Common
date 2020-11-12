@@ -1,8 +1,14 @@
 package com.dff.cordova.plugin.common;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.provider.Settings;
 import android.util.Log;
 import com.dff.cordova.plugin.common.action.CordovaAction;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
@@ -28,6 +34,7 @@ public class CommonPlugin extends CordovaPlugin {
     protected static LogListener logListener;
     protected HashMap<String, Class<? extends CordovaAction>> actions;
     private String childLogTag = "";
+    private boolean batteryRequested = false;
 
     public CommonPlugin() {
         super();
@@ -52,6 +59,17 @@ public class CommonPlugin extends CordovaPlugin {
         if (logListener == null) {
             logListener = new LogListener();
             CordovaPluginLog.addLogListner(logListener);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !batteryRequested) {
+            Activity context = cordova.getActivity();
+            String packageName = context.getPackageName();
+            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+                Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
+                        Uri.parse("package:" + packageName));
+                context.startActivity(intent);
+                batteryRequested = true;
+            }
         }
     }
 
