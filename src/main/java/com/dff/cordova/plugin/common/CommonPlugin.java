@@ -34,7 +34,7 @@ public class CommonPlugin extends CordovaPlugin {
     protected static LogListener logListener;
     protected HashMap<String, Class<? extends CordovaAction>> actions;
     private String childLogTag = "";
-    private boolean batteryRequested = false;
+    private static boolean batteryRequested = false;
 
     public CommonPlugin() {
         super();
@@ -65,10 +65,10 @@ public class CommonPlugin extends CordovaPlugin {
             String packageName = context.getPackageName();
             PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+                batteryRequested = true;
                 Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
                         Uri.parse("package:" + packageName));
                 context.startActivity(intent);
-                batteryRequested = true;
             }
         }
     }
